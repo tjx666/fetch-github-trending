@@ -1,0 +1,14 @@
+{
+    "name": "fetch-github-trending",
+    "module": "src/index.ts",
+    "type": "module",
+    "scripts": {
+        "format": "biome format --write ."
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^1.5.2",
+        "@types/bun": "^1.0.3",
+        "@yutengjing/biome-config": "^0.0.2",
+        "typescript": "^5.3.3"
+    }
+}
