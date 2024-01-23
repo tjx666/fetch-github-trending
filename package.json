@@ -3,6 +3,8 @@
     "module": "src/index.ts",
     "type": "module",
     "scripts": {
+        "debug": "bun src/index.ts",
+        "test": "bun test",
         "format": "biome format --write ."
     },
     "devDependencies": {
@@ -10,5 +12,8 @@
         "@types/bun": "^1.0.3",
         "@yutengjing/biome-config": "^0.0.2",
         "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "cheerio": "^1.0.0-rc.12"
     }
 }

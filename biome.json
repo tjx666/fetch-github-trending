@@ -1,7 +1,16 @@
 {
     "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
     "linter": {
-        "enabled": true
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "complexity": {
+                "noForEach": "off"
+            },
+            "style": {
+                "noNonNullAssertion": "off"
+            }
+        }
     },
     "organizeImports": {
         "enabled": true
