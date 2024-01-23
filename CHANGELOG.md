@@ -1,5 +1,18 @@
 # fetch-github-trending
 
+## 0.1.0
+
+### Minor Changes
+
+- 3ff679c: feat: support fetch the repository programLanguage color
+
+### Patch Changes
+
+- 02affa7: build: simplify github action flow
+- ad0b682: test: use assert module instead of expect of bun:test
+- c91fc71: docs: options
+- 1762d4c: chore: remove useless log
+
 ## 0.0.1
 
 ### Patch Changes
