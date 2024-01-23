@@ -25,10 +25,11 @@
     },
     "scripts": {
         "debug": "bun src/index.ts",
-        "lint": "bunx biome lint.",
+        "lint": "bunx biome lint .",
         "format": "biome format --write .",
+        "build:js": "bun build src/index.ts --outdir='./dist' --external='cheerio' --sourcemap='external' --minify",
         "build:dts": "tsc -p tsconfig.dts.json",
-        "build": "bun build src/index.ts --outdir='./dist' --external='*' --sourcemap='external' --minify ",
+        "build": "bun run build:js && bun run build:dts",
         "test": "bun test"
     },
     "dependencies": {

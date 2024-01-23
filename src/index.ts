@@ -104,3 +104,5 @@ export default async function fetchGithubTrending(options?: Options): Promise<Fe
 
     return _fetchGithubTrending(options as InnerOptions);
 }
+
+export { fetchGithubTrending };

@@ -18,5 +18,6 @@
         "strict": true,
         "noFallthroughCasesInSwitch": true,
         "forceConsistentCasingInFileNames": true
-    }
+    },
+    "include": ["src/**/*.ts", "benchmark/**/*.ts", "test/**/*.ts"]
 }
