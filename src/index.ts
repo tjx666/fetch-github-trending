@@ -110,5 +110,3 @@ export default async function fetchGithubTrending(options?: Options): Promise<Fe
 export { fetchGithubTrending };
 export { ProgramLanguage, SpokenLanguage };
 export type { Options, FetchResult, Repository };
-
-console.log((await fetchGithubTrending()).repositories);
