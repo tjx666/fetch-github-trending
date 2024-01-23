@@ -1,0 +1,45 @@
+name: Test
+
+on:
+  push:
+    branches: ['**']
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install
+        run: bun install
+
+      - name: Lint
+        run: bun run lint && bun run format
+
+  test:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install
+        run: bun install
+
+      - name: Build
+        run: bun run build && bun run build:dts
+
+      - name: Test
+        run: bun test

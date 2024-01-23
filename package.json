@@ -1,19 +1,44 @@
 {
     "name": "fetch-github-trending",
-    "module": "src/index.ts",
+    "version": "0.0.0",
+    "description": "fetch github trending easily",
+    "keywords": ["github", "trending", "repository"],
+    "homepage": "https://github.com/tjx666/fetch-github-trending#readme",
+    "bugs": {
+        "url": "https://github.com/tjx666/fetch-github-trending/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+git@github.com:tjx666/fetch-github-trending.git"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/",
+        "access": "public"
+    },
+    "files": ["dist"],
     "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "import": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+    },
     "scripts": {
         "debug": "bun src/index.ts",
-        "test": "bun test",
-        "format": "biome format --write ."
+        "lint": "bunx biome lint.",
+        "format": "biome format --write .",
+        "build:dts": "tsc -p tsconfig.dts.json",
+        "build": "bun build src/index.ts --outdir='./dist' --external='*' --sourcemap='external' --minify ",
+        "test": "bun test"
+    },
+    "dependencies": {
+        "cheerio": "^1.0.0-rc.12"
     },
     "devDependencies": {
+        "@changesets/cli": "^2.27.1",
         "@biomejs/biome": "^1.5.2",
         "@types/bun": "^1.0.3",
         "@yutengjing/biome-config": "^0.0.2",
         "typescript": "^5.3.3"
-    },
-    "dependencies": {
-        "cheerio": "^1.0.0-rc.12"
     }
 }
