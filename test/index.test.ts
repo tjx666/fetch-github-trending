@@ -1,4 +1,5 @@
-import { expect, test } from 'bun:test';
+import { test } from 'bun:test';
+import assert from 'assert/strict';
 import fetchGithubTrending, {
     GithubTrendingBaseUrl,
     ProgramLanguage,
@@ -11,13 +12,13 @@ const RepositoryCount = 25;
 test('page html accessible', async () => {
     const resp = await fetch(GithubTrendingBaseUrl);
     const html = await resp.text();
-    expect(html.includes('<html lang="en" '));
+    assert(html.includes('<div data-hpc>'));
 });
 
 test('no option', async () => {
     const { repositories } = await fetchGithubTrending();
-    expect(repositories.length).toBe(RepositoryCount);
-    expect(Object.keys(repositories[0]).length > 0);
+    assert.strictEqual(repositories.length, RepositoryCount);
+    assert(Object.keys(repositories[0]).length > 0);
 });
 
 test('with all options and single language', async () => {
@@ -26,16 +27,18 @@ test('with all options and single language', async () => {
         programLanguage: ProgramLanguage.TypeScript,
         dateRange: 'monthly',
     });
-    expect(url).toBe(
+    assert.strictEqual(
+        url,
         'https://github.com/trending/typescript?spoken_language_code=zh&since=monthly',
     );
-    expect(
-        repositories[0].programLanguage ===
-            Object.entries(ProgramLanguage).find(
-                ([_, lang]) => lang === ProgramLanguage.TypeScript,
-            )?.[0],
+
+    assert.strictEqual(
+        repositories[0].programLanguage,
+        Object.entries(ProgramLanguage).find(
+            ([_, lang]) => lang === ProgramLanguage.TypeScript,
+        )?.[0],
     );
-    expect(repositories.some((repo) => /[\u4e00-\u9fff]+/.test(repo.description)));
+    assert(repositories.some((repo) => /[\u4e00-\u9fff]+/.test(repo.description)));
 });
 
 test('fetch multiple programLanguage', async () => {
@@ -44,15 +47,20 @@ test('fetch multiple programLanguage', async () => {
         programLanguage: [ProgramLanguage.TypeScript, ProgramLanguage.Rust],
         dateRange: 'monthly',
     } satisfies Options;
-    const { repositories } = await fetchGithubTrending(options);
-    expect(repositories.length > 0);
-    expect(repositories.length < RepositoryCount * options.programLanguage.length);
+    const { repositories, info } = await fetchGithubTrending(options);
+    assert(repositories.length > 0);
+    assert(repositories.length < RepositoryCount * options.programLanguage.length);
+    assert(info?.size === 2);
+    assert(Array.from(info.values()).every((value) => value.repositories.length !== 0));
     options.programLanguage.forEach((programLanguage) => {
-        expect(
-            programLanguage ===
-                Object.entries(ProgramLanguage).find(
-                    ([_, lang]) => lang === ProgramLanguage.TypeScript,
-                )?.[0],
+        assert(
+            repositories.some(
+                (repo) =>
+                    repo.programLanguage ===
+                    Object.entries(ProgramLanguage).find(
+                        ([_, lang]) => lang === programLanguage,
+                    )?.[0],
+            ),
         );
     });
 });
