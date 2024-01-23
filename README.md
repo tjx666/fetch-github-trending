@@ -41,3 +41,15 @@ output:
   // ...
 ];
 ```
+
+## Options
+
+view [source](https://github.com/tjx666/fetch-github-trending/blob/main/src/types/Options.ts) for latest options:
+
+```typescript
+interface Options {
+  spokenLanguage?: SpokenLanguage;
+  programLanguage?: ProgramLanguage | ProgramLanguage[];
+  dateRange?: 'daily' | 'weekly' | 'monthly';
+}
+```
