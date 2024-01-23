@@ -1,11 +1,8 @@
-// https://github.com/trending/apollo-guidance-computer?since=weekly&spoken_language_code=ab
-
-// copy(
-//     $$('[data-filter-list] a').reduce((acc, e) => {
-//         acc[e.textContent.trim()] = e.href.slice(28, e.href.indexOf('?'));
-//         return acc;
-//     }, {}),
-// );
+// const obj = $$('[data-filter-list] a').reduce((acc, e) => {
+//     acc[e.textContent.trim()] = e.href.slice(28, e.href.indexOf('?'));
+//     return acc;
+// }, {});
+// copy(JSON.stringify(obj, null, 4).replace(':', '='));
 
 export enum ProgramLanguage {
     'Unknown languages' = 'unknown',

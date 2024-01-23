@@ -1,14 +1,11 @@
-// https://github.com/trending/apollo-guidance-computer?since=weekly&spoken_language_code=ab
-
-// copy(
-//     $$('#select-menu-spoken-language > details-menu > div.select-menu-list > div a').reduce(
-//         (acc, e) => {
-//             acc[e.textContent.trim()] = e.href.slice(e.href.lastIndexOf('=') + 1);
-//             return acc;
-//         },
-//         {},
-//     ),
+// const obj = $$('#select-menu-spoken-language > details-menu > div.select-menu-list > div a').reduce(
+//     (acc, e) => {
+//         acc[e.textContent.trim()] = e.href.slice(e.href.lastIndexOf('=') + 1);
+//         return acc;
+//     },
+//     {},
 // );
+// copy(JSON.stringify(obj, null, 4).replace(':', '='));
 
 export enum SpokenLanguage {
     'Clear spoken language' = '',

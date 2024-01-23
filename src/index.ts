@@ -1,14 +1,13 @@
 import { load } from 'cheerio';
 import type { FetchResult, Repository, Text } from './types/Model';
 import type { Options } from './types/Options';
+
 import { ProgramLanguage } from './types/ProgramLanguage';
-
-export { SpokenLanguage } from './types/SpokenLanguage';
-export { ProgramLanguage } from './types/ProgramLanguage';
-
-type InnerOptions = Omit<Options, 'programLanguage'> & { programLanguage: ProgramLanguage };
+import { SpokenLanguage } from './types/SpokenLanguage';
 
 export const GithubTrendingBaseUrl = 'https://github.com/trending';
+
+type InnerOptions = Omit<Options, 'programLanguage'> & { programLanguage: ProgramLanguage };
 
 async function _fetchGithubTrending(options?: InnerOptions) {
     // https://github.com/trending/apollo-guidance-computer?since=weekly&spoken_language_code=ab
@@ -54,11 +53,15 @@ async function _fetchGithubTrending(options?: InnerOptions) {
         const $contributorImgs = $bottom.find('> span > a > img');
         const contributors = $contributorImgs.toArray().map((img) => img.attribs.alt.slice(1));
 
+        const langSpan = $bottom.find('span[itemprop=programmingLanguage]');
+        const langColorSpanStyle = $bottom.find('.repo-language-color').attr('style');
+
         return {
             owner,
             name,
             description: $article.find('> p').text().trim(),
-            programLanguage: $bottom.find('span[itemprop=programmingLanguage]').text(),
+            programLanguage: langSpan.length > 0 ? langSpan.text() : undefined,
+            programLanguageColor: langColorSpanStyle?.slice(langColorSpanStyle.indexOf('#')),
             starCount,
             starCountInDateRange,
             forkCount,
@@ -82,7 +85,7 @@ export default async function fetchGithubTrending(options?: Options): Promise<Fe
             }),
         );
         const results = (await Promise.all(fetchPromises)).flat();
-        const result = {
+        return {
             url: results[0].url,
             html: results[0].html,
             repositories: results.reduce((repos, result) => {
@@ -99,10 +102,13 @@ export default async function fetchGithubTrending(options?: Options): Promise<Fe
                 ]),
             ),
         };
-        return result;
     }
 
     return _fetchGithubTrending(options as InnerOptions);
 }
 
 export { fetchGithubTrending };
+export { ProgramLanguage, SpokenLanguage };
+export type { Options, FetchResult, Repository };
+
+console.log((await fetchGithubTrending()).repositories);

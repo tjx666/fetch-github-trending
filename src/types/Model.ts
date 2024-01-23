@@ -7,7 +7,8 @@ export interface Repository {
     owner: string;
     name: string;
     description: string;
-    programLanguage: string;
+    programLanguage?: string;
+    programLanguageColor?: string;
     starCount: number;
     starCountInDateRange: number;
     forkCount: number;
