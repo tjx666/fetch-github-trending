@@ -1,5 +1,11 @@
 # fetch-github-trending
 
+## 0.1.3
+
+### Patch Changes
+
+- 08166ba: fix: forgot build before changeset publish
+
 ## 0.1.2
 
 ### Patch Changes
