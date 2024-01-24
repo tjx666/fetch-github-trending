@@ -33,9 +33,10 @@ output:
     name: 'freeCodeCamp',
     description: "freeCodeCamp.org's open-source codebase and curriculum. Learn to code for free.",
     programLanguage: 'TypeScript',
-    starCount: 381932,
-    starCountInDateRange: 2483,
-    forkCount: 35583,
+    programLanguageColor: '#3178c6',
+    starCount: 382086,
+    starCountInDateRange: 151,
+    forkCount: 35617,
     contributors: ['raisedadead', 'ojeytonwilliams', 'camperbot', 'renovate-bot', 'sahat'],
   },
   // ...
