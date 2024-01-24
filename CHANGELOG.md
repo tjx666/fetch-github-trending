@@ -1,5 +1,12 @@
 # fetch-github-trending
 
+## 0.1.1
+
+### Patch Changes
+
+- 8635758: chore: biome format
+- b948c07: docs: update output
+
 ## 0.1.0
 
 ### Minor Changes
