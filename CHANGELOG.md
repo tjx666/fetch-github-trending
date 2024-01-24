@@ -1,5 +1,11 @@
 # fetch-github-trending
 
+## 0.1.2
+
+### Patch Changes
+
+- 39a9b50: build: fix format in ci & use bun to run tsc
+
 ## 0.1.1
 
 ### Patch Changes
