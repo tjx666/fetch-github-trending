@@ -2,11 +2,7 @@
     "name": "fetch-github-trending",
     "version": "0.1.1",
     "description": "fetch github trending easily",
-    "keywords": [
-        "github",
-        "trending",
-        "repository"
-    ],
+    "keywords": ["github", "trending", "repository"],
     "homepage": "https://github.com/tjx666/fetch-github-trending#readme",
     "bugs": {
         "url": "https://github.com/tjx666/fetch-github-trending/issues"
@@ -19,9 +15,7 @@
         "registry": "https://registry.npmjs.org/",
         "access": "public"
     },
-    "files": [
-        "dist"
-    ],
+    "files": ["dist"],
     "type": "module",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -32,9 +26,9 @@
     "scripts": {
         "debug": "bun src/index.ts",
         "lint": "bunx biome lint .",
-        "format": "biome format --write .",
+        "format": "bunx biome format --write .",
         "build:js": "bun build src/index.ts --outdir='./dist' --external='cheerio' --sourcemap='external' --minify",
-        "build:dts": "tsc -p tsconfig.dts.json",
+        "build:dts": "bunx tsc -p tsconfig.dts.json",
         "build": "bun run build:js && bun run build:dts",
         "test": "bun test"
     },
